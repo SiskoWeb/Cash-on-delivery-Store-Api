@@ -46,15 +46,7 @@ const productSchema = mongoose.Schema({
     },
     images: [String],
 
-    ratingsAverage: {
-        type: Number,
-        min: [1, 'rating mus be abouve or erual 1.0'],
-        max: [5, 'rating mus be below or erual 1.0']
-    },
-    ratingsQuantity: {
-        type: Number,
-        default: 0
-    },
+
     category: {
         type: mongoose.Schema.ObjectId,
         ref: 'Categories',
@@ -67,6 +59,10 @@ const productSchema = mongoose.Schema({
         toJSON: { virtuals: true },
         toObject: { virtuals: true },
     })
+
+
+
+
 
 const setImageUrl = (doc) => {
     if (doc.imageCover) {
