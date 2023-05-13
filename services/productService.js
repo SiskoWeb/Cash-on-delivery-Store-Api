@@ -14,7 +14,6 @@ const sharp = require('sharp');
 // @desc Resize Image That user input
 exports.resizeImage = asyncHandler(async (req, res, next) => {
 
-    console.log(req.files)
     if (req.files.imageCover) {
 
         const coverfileName = `PRODUCT-${Date.now()}-${Math.round(Math.random() * 1E9)}-cover.jpeg`
@@ -63,26 +62,26 @@ exports.imageUploaderProduct = uploadMultImage([
 
 // @desc    Create  category
 // @route   PUT /api/v1/Prodcuts/:id
-// @access  Private
+// @access    Protected/Admin
 exports.createProduct = factory.createCategory(Prodcuts)
 
 
 // @desc    Get All category
 // @route   GET /api/v1/Prodcuts/:id
-// @access  Poublic
+// @access    Protected/Admin
 exports.getAllProdcuts = factory.getAll(Prodcuts)
 
 // @desc    update specific category
 // @route   UPUT /api/v1/Prodcuts/:id
-// @access  Private
+// @access    Protected/Admin
 exports.updateProduct = factory.updateOne(Prodcuts)
 
 // @desc    Delete specific category
 // @route   DELETE /api/v1/Prodcuts/:id
-// @access  Private
+// @access    Protected/Admin
 exports.deleteProduct = factory.deleteOne(Prodcuts)
 
 // @desc    Get specific category
 // @route   GET /api/v1/Prodcuts/:id
-// @access  Poublic
+// @access    Protected/Admin
 exports.getOne = factory.getOne(Prodcuts)

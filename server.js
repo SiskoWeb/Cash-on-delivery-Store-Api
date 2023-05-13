@@ -16,6 +16,7 @@ const ApiError = require('./utils/ApiError')
 const categoriesRoute = require('./routes/categoriesRoute')
 const productsRoute = require('./routes/productRoute')
 const authRoute = require('./routes/authRoute')
+const orderRoute = require('./routes/orderRoute')
 
 app.use(express.json())
 
@@ -32,6 +33,7 @@ dbConnect()
 app.use('/api/v1/categories', categoriesRoute)
 app.use('/api/v1/products', productsRoute)
 app.use('/api/v1/auth', authRoute)
+app.use('/api/v1/order', orderRoute)
 
 
 //@desc EndPoints

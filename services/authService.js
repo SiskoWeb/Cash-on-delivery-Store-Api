@@ -23,10 +23,11 @@ const createToken = (payload) =>
 
 
 
+//@desc only who has key can create new accounts
 exports.allowCreateAccount = expressAsyncHandler(async (req, res, next) => {
 
 
-    const key = req.body.key !== 'yassine'
+    const key = req.body.key !== 'yassine.info'
     if (key) {
         return next(
             new ApiError('You are not allowed to create New Accounts , you need key', 403)
@@ -39,7 +40,7 @@ exports.allowCreateAccount = expressAsyncHandler(async (req, res, next) => {
 
 // @DESC SIGNUP
 // @ROUTE GET /API/V1/AUTH/SIGNUP
-// @DACCESS PUBLIC
+// @DACCESS rotected/ by Key "yassine.info"
 exports.signup = expressAsyncHandler(async (req, res, next) => {
 
 
@@ -58,7 +59,9 @@ exports.signup = expressAsyncHandler(async (req, res, next) => {
     res.status(201).json({ data: user, token })
 })
 
-
+// @DESC LOGIN
+// @ROUTE GET /API/V1/AUTH/LOGIN
+// @DACCESS PUBLIC
 exports.login = expressAsyncHandler(async (req, res, next) => {
 
     // 1) check if login is true
@@ -79,6 +82,8 @@ exports.login = expressAsyncHandler(async (req, res, next) => {
 
 
 
+
+//@DESC Check if User Loged 
 exports.protect = expressAsyncHandler(async (req, res, next) => {
 
     //1) check if token exist
@@ -96,7 +101,8 @@ exports.protect = expressAsyncHandler(async (req, res, next) => {
 
     //3) check if user exist 
 
-    const currentUser = await User.findById(decoded._id)
+    const currentUser = await User.findById(decoded.userId)
+
 
     if (!currentUser) {
 
@@ -107,14 +113,15 @@ exports.protect = expressAsyncHandler(async (req, res, next) => {
 
     //4) verify token (no change happens  epired token)
 
-
     req.user = currentUser
+
     next()
 
 })
 
 
 
+//@DESC CHeck IF user is a admin 
 exports.allowTo = (...roles) => expressAsyncHandler(async (req, res, next) => {
 
     if (!roles.includes(req.user.role)) {

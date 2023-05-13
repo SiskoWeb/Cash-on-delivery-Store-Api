@@ -7,13 +7,13 @@ const { createCetegoriesValidator, UpdateCetegoriesValidator, DeleteCetegoriesVa
 const AuthService = require('../services/authService')
 
 router.route('/')
-    .post(AuthService.allowTo('admin'),AuthService.protect,imageUploaderCategories, resizeImage, createCetegoriesValidator, createCategory)
+    .post(AuthService.protect, AuthService.allowTo('admin'), imageUploaderCategories, resizeImage, createCetegoriesValidator, createCategory)
     .get(getAllCategories)
 
 
 router.route('/:id')
-    .put(AuthService.allowTo('admin'),AuthService.protect,imageUploaderCategories, resizeImage, UpdateCetegoriesValidator, updateCategory)
-    .delete(AuthService.allowTo('admin'),AuthService.protect,DeleteCetegoriesValidator, deleteCategory)
+    .put(AuthService.protect, AuthService.allowTo('admin'), imageUploaderCategories, resizeImage, UpdateCetegoriesValidator, updateCategory)
+    .delete(AuthService.protect, AuthService.allowTo('admin'), DeleteCetegoriesValidator, deleteCategory)
     .get(GetOneCetegoriesValidator, getOne)
 
 module.exports = router

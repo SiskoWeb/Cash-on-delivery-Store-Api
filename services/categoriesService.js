@@ -36,26 +36,26 @@ exports.imageUploaderCategories = uploadSingleImage('image')
 
 // @desc    Create  category
 // @route   PUT /api/v1/categories/:id
-// @access  Private
+// @access    Protected/Admin
 exports.createCategory = createCategory(Categories)
 
 
 // @desc    Get All category
 // @route   GET /api/v1/categories/:id
-// @access  Poublic
+// @access    Protected/Admin
 exports.getAllCategories = getAll(Categories)
 
 // @desc    update specific category
 // @route   UPUT /api/v1/categories/:id
-// @access  Private
+// @access    Protected/Admin
 exports.updateCategory = updateOne(Categories)
 
 // @desc    Delete specific category
 // @route   DELETE /api/v1/categories/:id
-// @access  Private
+// @access    Protected/Admin
 exports.deleteCategory = deleteOne(Categories)
 
 // @desc    Get specific category
 // @route   GET /api/v1/categories/:id
-// @access  Poublic
+// @access    Protected/Admin
 exports.getOne = getOne(Categories)
