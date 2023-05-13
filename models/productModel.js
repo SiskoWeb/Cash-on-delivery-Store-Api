@@ -66,7 +66,7 @@ const productSchema = mongoose.Schema({
 
 const setImageUrl = (doc) => {
     if (doc.imageCover) {
-        const imageUrl = `http://127.0.0.1:3000/products/${doc.imageCover}`
+        const imageUrl = `${doc.imageCover}`
         doc.imageCover = imageUrl
     }
     if (doc.images) {
@@ -74,7 +74,7 @@ const setImageUrl = (doc) => {
         // eslint-disable-next-line array-callback-return
         doc.images.map((img, index) => {
 
-            const imageUrl = `http://127.0.0.1:3000/products/${img}`
+            const imageUrl = `${img}`
             doc.images[index] = imageUrl
         })
 

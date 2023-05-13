@@ -14,7 +14,7 @@ const sharp = require('sharp');
 // @desc Resize Image That user input
 exports.resizeImage = asyncHandler(async (req, res, next) => {
 
-    if (req.files.imageCover) {
+    if (req.files?.imageCover) {
 
         const coverfileName = `PRODUCT-${Date.now()}-${Math.round(Math.random() * 1E9)}-cover.jpeg`
 
@@ -28,7 +28,7 @@ exports.resizeImage = asyncHandler(async (req, res, next) => {
 
 
     }
-    if (req.files.images) {
+    if (req.files?.images) {
         req.body.images = []
         await Promise.all(
             req.files.images.map(async (img) => {
@@ -45,9 +45,9 @@ exports.resizeImage = asyncHandler(async (req, res, next) => {
 
             })
         )
-        next()
-    }
 
+    }
+    next()
 })
 
 

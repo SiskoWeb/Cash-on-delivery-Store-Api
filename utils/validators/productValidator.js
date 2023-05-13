@@ -14,7 +14,8 @@ exports.createProductValidator = [
 
     check("title").notEmpty().withMessage('Product name Required')
         .isLength({ min: 2 }).withMessage('Product name too short')
-        .isLength({ max: 32 }).withMessage('Product name too Long'),
+        .isLength({ max: 32 }).withMessage('Product name too Long')
+    ,
 
     check("price")
         .notEmpty().withMessage('price is  Required')
@@ -27,9 +28,6 @@ exports.createProductValidator = [
         .isLength({ min: 20 }).withMessage('description is too short Should Mord then 20 letter')
         .isLength({ max: 2000 }).withMessage('description is too short shouild less then 2000 letter'),
 
-    check('sold')
-        .notEmpty().withMessage('sold is required')
-        .isNumeric().withMessage('sold shouild be number'),
 
     check('quantity')
         .notEmpty().withMessage('quantity is required')
